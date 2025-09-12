@@ -1,0 +1,58 @@
+<p-dialog 
+  [header]="dialogHeader" 
+  [(visible)]="display" 
+  [modal]="true" 
+  [style]="{ width: '450px' }"
+  (onHide)="closeDialog()">
+
+  <form [formGroup]="form" id="producto-form" (ngSubmit)="guardar()">
+    <div class="p-fluid">
+      <div class="field">
+        <label for="nombre">Nombre</label>
+        <input pInputText id="nombre" formControlName="nombre" />
+      </div>
+      <div class="field">
+        <label for="descripcion">Descripción</label>
+        <textarea pInputTextarea id="descripcion" formControlName="descripcion" rows="3"></textarea>
+      </div>
+      <div class="field">
+        <label for="categoriaId">Categoría</label>
+        <p-dropdown 
+          id="categoriaId"
+          formControlName="categoriaId" 
+          [options]="categorias || []" 
+          optionLabel="nombre" 
+          optionValue="id"
+          placeholder="Selecciona una categoría">
+        </p-dropdown>
+      </div>
+      <div class="formgrid grid">
+        <div class="field col">
+            <label for="precio">Precio</label>
+            <p-inputNumber inputId="precio" formControlName="precio" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+        </div>
+        <div class="field col">
+            <label for="stock">Stock</label>
+            <p-inputNumber inputId="stock" formControlName="stock"></p-inputNumber>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+  <ng-template pTemplate="footer">
+    <button pButton pRipple 
+      label="Cancelar" 
+      aria-label="Cancelar"
+      icon="pi pi-times" 
+      class="p-button-text" 
+      (click)="closeDialog()"></button>
+    <button pButton pRipple 
+      label="Guardar" 
+      aria-label="Guardar"
+      icon="pi pi-check" 
+      type="submit" 
+      form="producto-form" 
+      [disabled]="form.invalid"></button>
+  </ng-template>
+
+</p-dialog>

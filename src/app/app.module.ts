@@ -3,8 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+// NgRx
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
+// PrimeNG
 import { TableModule} from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -16,11 +21,12 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { TooltipModule } from 'primeng/tooltip';
 
+
+//app modules and components
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
 import { ProductoFormComponent } from './components/producto-form/producto-form.component';
+import { ProductosComponent } from './pages/productos/productos.component';
 
 
 import { productoReducer } from './states/reducers/producto.reducer';
@@ -32,23 +38,26 @@ import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
-    ProductoFormComponent
+    ProductoFormComponent,
+    ProductosComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    // PrimeNG
     TableModule,
     ButtonModule,
     DialogModule,
     DropdownModule,
     InputNumberModule,
-    ReactiveFormsModule,
-    InputTextModule,
-    InputTextareaModule,
-    ConfirmDialogModule,
     TooltipModule,
+    InputTextareaModule,
+    InputTextModule,
+    ConfirmDialogModule,
+    // NgRx
     StoreModule.forRoot({
       productos: productoReducer,
       categorias: categoriaReducer
